@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* WNCL Referee Portal Design System */
+    --background: 0 0% 100%;
+    --foreground: 220 20% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 10%;
+
+    /* Royal Blue - Primary brand color */
+    --primary: 220 100% 20%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Soft blue-gray secondary */
+    --secondary: 220 15% 96%;
+    --secondary-foreground: 220 20% 15%;
+
+    /* Muted surfaces */
+    --muted: 220 15% 95%;
+    --muted-foreground: 220 10% 45%;
+
+    /* Golden Accent */
+    --accent: 51 100% 50%;
+    --accent-foreground: 220 100% 15%;
+
+    /* Status colors */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 220 100% 15%;
+
+    /* UI elements */
+    --border: 220 15% 90%;
+    --input: 220 15% 90%;
+    --ring: 220 100% 20%;
+
+    --radius: 0.75rem;
+
+    /* Sidebar - Royal Blue theme */
+    --sidebar-background: 220 100% 20%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 51 100% 50%;
+    --sidebar-primary-foreground: 220 100% 15%;
+    --sidebar-accent: 220 80% 28%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 220 80% 25%;
+    --sidebar-ring: 51 100% 50%;
+
+    /* Custom shadows */
+    --shadow-soft: 0 2px 8px -2px hsl(220 20% 10% / 0.08);
+    --shadow-card: 0 4px 16px -4px hsl(220 20% 10% / 0.1);
+    --shadow-elevated: 0 8px 32px -8px hsl(220 20% 10% / 0.15);
+
+    /* Gold gradient for premium elements */
+    --gradient-gold: linear-gradient(135deg, hsl(51 100% 50%) 0%, hsl(38 92% 50%) 100%);
+    --gradient-blue: linear-gradient(135deg, hsl(220 100% 20%) 0%, hsl(220 80% 35%) 100%);
+  }
+
+  .dark {
+    --background: 220 20% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 20% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 20% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 51 100% 50%;
+    --primary-foreground: 220 100% 10%;
+
+    --secondary: 220 20% 18%;
+    --secondary-foreground: 0 0% 90%;
+
+    --muted: 220 20% 18%;
+    --muted-foreground: 220 10% 60%;
+
+    --accent: 220 100% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 70% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 220 100% 10%;
+
+    --border: 220 20% 20%;
+    --input: 220 20% 20%;
+    --ring: 51 100% 50%;
+
+    --sidebar-background: 220 25% 10%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 51 100% 50%;
+    --sidebar-primary-foreground: 220 100% 10%;
+    --sidebar-accent: 220 25% 18%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 220 25% 18%;
+    --sidebar-ring: 51 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted/50;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/40;
+  }
+}
+
+@layer components {
+  /* Card with hover elevation */
+  .card-interactive {
+    @apply transition-all duration-200 ease-out;
+  }
+
+  .card-interactive:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-elevated);
+  }
+
+  /* Gold shimmer effect for premium elements */
+  .gold-shimmer {
+    background: var(--gradient-gold);
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* Pulse animation for notifications */
+  .pulse-gold {
+    animation: pulse-gold 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse-gold {
+    0%, 100% {
+      box-shadow: 0 0 0 0 hsl(51 100% 50% / 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 8px hsl(51 100% 50% / 0);
+    }
+  }
+
+  /* Touch-friendly button states */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  /* Status badge styles */
+  .status-confirmed {
+    @apply bg-success/10 text-success border-success/20;
+  }
+
+  .status-pending {
+    @apply bg-warning/10 text-warning border-warning/30;
+  }
+
+  .status-urgent {
+    @apply bg-destructive/10 text-destructive border-destructive/20;
+  }
+
+  .status-assigned {
+    @apply bg-primary/10 text-primary border-primary/20;
+  }
+}
+
+@layer utilities {
+  /* Safe area for mobile bottom nav */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 1rem);
+  }
+
+  .mb-safe {
+    margin-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  /* Glass morphism effect */
+  .glass {
+    @apply bg-background/80 backdrop-blur-lg;
+  }
+
+  /* Text gradient */
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-gold);
+  }
+
+  /* Focus ring with gold accent */
+  .focus-ring-gold {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+}
